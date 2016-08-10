@@ -1,24 +1,24 @@
 source("lda_func.r")
 
-# # parameters # #
+## parameters
 M <- 35		# document number
 k <- 10		# topic number
 v <- 50		# unique words index length
 n <- 100	# words for each document
 
-# # simulate initial parameters # #
+## simulate initial parameters
 sim_p <- sim_para()
 ini.alpha <- sim_p$alpha
 ini.beta <- sim_p$beta
 
-# # simulate observe # #
+## simulate observe
 corpus <- NULL
 for(i in 1:M){
 	n <- sample(60:150,1)
 	corpus[[i]] <- sim_docu(n)
 }
 
-# # inference alpha, beta # #
+## inference alpha, beta
 alpha <- NULL
 beta <- NULL
 ll <- 0
@@ -39,3 +39,6 @@ for(i in 1:2){
 	if(abs(new_ll-ll) < 0.0001) break
 	ll <- new_ll
 }
+
+## calculate the posterior topic distribution for each document
+postz(corpus, alpha, beta)

@@ -1,4 +1,4 @@
-# simulation observe and inference function
+## simulation observe and inference function
 
 sim_docu <- function(k=10, v=50, n=100){
   wordindex <- diag(1,nrow = v)
@@ -36,7 +36,7 @@ vbinfer <- function(doc,alpha, beta, n.iter=5000, e=0.0001){
       phi[j,i] <- 1/k
     }
   }
-  # # update variational paras
+  # update variational paras
   oldll <- 0
   var_iter <- 1
   while(TRUE){
