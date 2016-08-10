@@ -141,11 +141,35 @@ m.step <- function(corpus, var_gamma_list, phi_list, ini.alpha, ini.beta, n.iter
   list(alpha=alpha,beta=beta,ll=ll)
 }
 
-# date:   2016-08-02
-# likelihood, derivative and second derivative function of alpha parameter from blei paper
-# Likelihood alpha
-# alhpa: (vector) 1*K (K: topic number)
-# var_gamma_list: (list) length, N (the documents number in a corpus), column number: K (K: topic number)
+## posterior topic distribution
+postz <- function(corpus, alpha, beta){
+	p <- c()
+	for(i in 1:length(alpha)){		
+		logp <- log(gamma(sum(alpha)))-log(gamma(sum(alpha)+1)) + log(gamma(1+alpha[i]))- log(gamma(alpha[i]))
+		p[i] <- exp(logp)
+	}
+	p <- p / sum(p)
+	pro <- matrix(numeric(length(corpus) * length(alpha)),length(corpus))
+	for(n in 1:length(corpus)){	
+		counts <- corpus[[n]]$counts
+		for(k in 1:length(alpha)){
+			logp <- 0
+			for(i in 1:nrow(counts)){
+				v <- counts[i,1]
+				num <- counts[i,2]
+				logp <- logp + num*log(beta[k,v])
+			}
+			pro[n,k] <- exp(logp + log(p[k]))
+		}		
+	}
+	rs <- rowSums(pro)
+	apply(pro,2, function(x) x / rs)
+}
+
+## likelihood, derivative and second derivative function of alpha parameter from blei paper
+## Likelihood alpha
+## alhpa: (vector) 1*K (K: topic number)
+## var_gamma_list: (list) length, N (the documents number in a corpus), column number: K (K: topic number)
 
 la <- function(alpha,g_list=var_gamma_list){
   M <- length(g_list)

@@ -1,4 +1,4 @@
-source("lda_func2.r")
+source("lda_func.r")
 
 # # parameters # #
 M <- 35		# document number
@@ -22,7 +22,7 @@ for(i in 1:M){
 alpha <- NULL
 beta <- NULL
 ll <- 0
-for(i in 1:1000){
+for(i in 1:2){
 	if(is.null(alpha)) alpha <- ini.alpha
 	if(is.null(beta)) beta <- ini.beta
 	# print(alpha)
