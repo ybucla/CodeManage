@@ -1,3 +1,5 @@
+#! /u/home/y/ybwang/nobackup-yxing/program/R-3.2.3/bin/Rscript
+
 cat("# reading data\n")
 data <- read.table("data/parse.HL.out",header=FALSE,sep="\t")
 ## remove kinase with less than 10 sites
