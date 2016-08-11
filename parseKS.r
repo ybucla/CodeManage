@@ -1,5 +1,10 @@
 #! /u/home/y/ybwang/nobackup-yxing/program/R-3.2.3/bin/Rscript
 
+## check libraries
+if("doParallel" %in% rownames(installed.packages()) == FALSE) install.packages('doParallel')
+if("foreach" %in% rownames(installed.packages()) == FALSE) install.packages('foreach')
+
+## readubg data
 cat("# reading data\n")
 data <- read.table("data/parse.HL.out",header=FALSE,sep="\t")
 ## remove kinase with less than 10 sites
@@ -52,7 +57,7 @@ for(i in 1:5000){
   if(is.null(beta)) beta <- ini.beta
   # print(alpha)
   # e-step
-  pg <- e.step(corpus, alpha, beta)
+  pg <- e.step.parallel(corpus, alpha, beta)
   var_gamma_list <- pg$g
   phi_list <- pg$p
   # m-step

@@ -1,3 +1,6 @@
+library("foreach")
+library("doParallel")
+
 ## simulation observe and inference function
 sim_docu <- function(k=10, v=50, n=100){
   wordindex <- diag(1,nrow = v)
@@ -85,6 +88,27 @@ e.step <- function(corpus,alpha, beta, n.iter=5000, e=0.0001){
     document <- corpus[[i]]
     para <- vbinfer(document,alpha,beta)
     var_gamma_list[[i]] <- para$g
+    phi_list[[i]] <- para$p
+    ll_list[[i]] <- para$ll
+  }
+  list(g=var_gamma_list,p=phi_list,ll=ll_list)
+}
+
+e.step.parallel <- function(corpus,alpha, beta, n.iter=5000, e=0.0001,core=6){
+  # corpus: (list), set of document
+  var_gamma_list <- list()
+  phi_list <- list()
+  ll_list <- list()
+  paralist <- NULL
+  if(core > 1){
+	paralist <- foreach(i=1:length(corpus)) %dopara% vbinfer(corpus[[i]],alpha,beta)
+  }else{
+	paralist <- foreach(i=1:length(corpus)) %do% vbinfer(corpus[[i]],alpha,beta)
+  }
+  
+  for(i in 1:length(paralist)) {
+	para <- paralist[[i]]
+	var_gamma_list[[i]] <- para$g
     phi_list[[i]] <- para$p
     ll_list[[i]] <- para$ll
   }
