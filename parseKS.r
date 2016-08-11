@@ -1,3 +1,4 @@
+cat("# reading data\n")
 data <- read.table("data/parse.HL.out",header=FALSE,sep="\t")
 ## remove kinase with less than 10 sites
 orikina <- unique(data$V7)
@@ -30,6 +31,7 @@ for(i in 1:M){
   corpus[[i]] <- list(document=document,counts=counts)
 }
 
+cat("# start runing\n")
 ## start runing ##
 source("lda_func.r")
 ## parameters
