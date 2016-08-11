@@ -1,5 +1,7 @@
 library("foreach")
 library("doParallel")
+core <- 6 
+registerDoParallel(makeCluster(core))
 
 ## simulation observe and inference function
 sim_docu <- function(k=10, v=50, n=100){
@@ -94,13 +96,13 @@ e.step <- function(corpus,alpha, beta, n.iter=5000, e=0.0001){
   list(g=var_gamma_list,p=phi_list,ll=ll_list)
 }
 
-e.step.parallel <- function(corpus,alpha, beta, n.iter=5000, e=0.0001,core=6){
+e.step.parallel <- function(corpus,alpha, beta, n.iter=5000, e=0.0001, parallel=TRUE){
   # corpus: (list), set of document
   var_gamma_list <- list()
   phi_list <- list()
   ll_list <- list()
   paralist <- NULL
-  if(core > 1){
+  if(parallel == TRUE){
 	paralist <- foreach(i=1:length(corpus)) %dopara% vbinfer(corpus[[i]],alpha,beta)
   }else{
 	paralist <- foreach(i=1:length(corpus)) %do% vbinfer(corpus[[i]],alpha,beta)

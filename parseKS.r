@@ -41,6 +41,8 @@ for(i in 1:M){
 cat("# start runing\n")
 ## start runing ##
 source("lda_func.r")
+core <- 6 
+registerDoParallel(makeCluster(core))
 ## parameters
 k <- 10
 v <- length(site)
@@ -55,9 +57,8 @@ ll <- 0
 for(i in 1:5000){
   if(is.null(alpha)) alpha <- ini.alpha
   if(is.null(beta)) beta <- ini.beta
-  # print(alpha)
   # e-step
-  pg <- e.step.parallel(corpus, alpha, beta)
+  pg <- e.step.parallel(corpus, alpha, beta, parallel=TRUE)
   var_gamma_list <- pg$g
   phi_list <- pg$p
   # m-step
