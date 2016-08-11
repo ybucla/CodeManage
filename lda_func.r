@@ -1,5 +1,4 @@
 ## simulation observe and inference function
-
 sim_docu <- function(k=10, v=50, n=100){
   wordindex <- diag(1,nrow = v)
   counts <- cbind(1:50, rmultinom(1,n,prob=rep(1/v,v)))
@@ -19,6 +18,7 @@ sim_para <- function(k=10,v=50){
   list(alpha=alpha,beta=beta)
 }
 
+## inference variational parameters gamma, phi
 vbinfer <- function(doc,alpha, beta, n.iter=5000, e=0.0001){
   document <- doc$document
   counts <- doc$counts
