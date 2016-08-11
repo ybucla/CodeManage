@@ -41,8 +41,9 @@ for(i in 1:M){
 cat("# start runing\n")
 ## start runing ##
 source("lda_func.r")
-core <- 6 
-registerDoParallel(makeCluster(core))
+core <- 6
+c1 <- makeCluster(core)
+registerDoParallel(c1)
 ## parameters
 k <- 10
 v <- length(site)
@@ -74,3 +75,6 @@ for(i in 1:5000){
 save(alpha,file="alpha.RData")
 save(beta,file="beta.RData")
 save(corpus,file="corpus.RData")
+
+## stopCluster
+stopCluster(cl)

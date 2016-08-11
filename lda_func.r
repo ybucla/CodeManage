@@ -1,7 +1,8 @@
 library("foreach")
 library("doParallel")
 core <- 6 
-registerDoParallel(makeCluster(core))
+c1 <- makeCluster(core)
+registerDoParallel(c1)
 
 ## simulation observe and inference function
 sim_docu <- function(k=10, v=50, n=100){
