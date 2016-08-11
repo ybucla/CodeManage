@@ -97,16 +97,16 @@ e.step <- function(corpus,alpha, beta, n.iter=5000, e=0.0001){
   list(g=var_gamma_list,p=phi_list,ll=ll_list)
 }
 
-e.step.parallel <- function(corpus,alpha, beta, n.iter=5000, e=0.0001, parallel=TRUE){
+e.step.parallel <- function(corpus,alpha, beta, n.iter=5000, e=0.0001, paral=TRUE){
   # corpus: (list), set of document
   var_gamma_list <- list()
   phi_list <- list()
   ll_list <- list()
   paralist <- NULL
-  if(parallel == TRUE){
-	paralist <- foreach(i=1:length(corpus)) %dopara% vbinfer(corpus[[i]],alpha,beta)
+  if(paral == TRUE){
+	paralist <- foreach(i=1:length(corpus),.export=c('vbinfer','likelihood')) %dopar% {vbinfer(corpus[[i]],alpha,beta)}
   }else{
-	paralist <- foreach(i=1:length(corpus)) %do% vbinfer(corpus[[i]],alpha,beta)
+	paralist <- foreach(i=1:length(corpus),.export=c('vbinfer','likelihood')) %do% vbinfer(corpus[[i]],alpha,beta)
   }
   
   for(i in 1:length(paralist)) {

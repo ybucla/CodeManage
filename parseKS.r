@@ -59,7 +59,7 @@ for(i in 1:5000){
   if(is.null(alpha)) alpha <- ini.alpha
   if(is.null(beta)) beta <- ini.beta
   # e-step
-  pg <- e.step.parallel(corpus, alpha, beta, parallel=TRUE)
+  pg <- e.step.parallel(corpus, alpha, beta, paral=TRUE)
   var_gamma_list <- pg$g
   phi_list <- pg$p
   # m-step
