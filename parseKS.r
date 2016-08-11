@@ -43,7 +43,7 @@ ini.beta <- sim_p$beta
 alpha <- NULL
 beta <- NULL
 ll <- 0
-for(i in 1:2){
+for(i in 1:5000){
   if(is.null(alpha)) alpha <- ini.alpha
   if(is.null(beta)) beta <- ini.beta
   # print(alpha)
