@@ -10,3 +10,17 @@ webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chromePath))  #
 webbrowser.get('chrome').open('www.baidu.com'，new=1,autoraise=True)
 ## 
 
+## ls dir
+import os
+print os.listdir("/media/cdrom0")
+##
+
+## upper 转大写
+s.upper()
+##
+
+## 列表推导式
+input = ['a','b','c','d','a']
+filter = [x*3 for x in input if x == 'a'] # 等于a 的元素重复三次作为新列表元素
+dict = [(i,input[i]) for i in range(len(input))]
+##
