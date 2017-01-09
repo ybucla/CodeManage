@@ -112,3 +112,5 @@ train.glm <- function(datalist,nfold=4){
   # newd
 }
   
+p<-predict(lgst,type='response')
+qplot(seq(-2,2,length=length(p)),sort(p),col='predict')
