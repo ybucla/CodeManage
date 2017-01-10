@@ -42,4 +42,4 @@ ggbiplot(wine.pca, obs.scale = 1, var.scale = 1,
   scale_color_discrete(name = '') +
   theme(legend.direction = 'horizontal', legend.position = 'top')
 ```
-![](https://github.com/ybucla/CodeManage/blob/master/R/pca/README-wine-example-1.png
+![](https://github.com/ybucla/CodeManage/blob/master/R/pca/README-wine-example-1.png)
