@@ -1,24 +1,8 @@
-
----
-output:
-  md_document:
-    variant: markdown_github
----
-
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-**NEWS**: Active development of ggbiplot has moved to the [experimental branch](https://github.com/vqv/ggbiplot/tree/experimental)
-
-```{r, echo = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "README-"
-)
-```
-
-ggbiplot
+PCA相关画图展示
 ========
+
+1. ggbiplot
+------------
 
 An implementation of the biplot using ggplot2.  The package provides two functions: `ggscreeplot()` and `ggbiplot()`.
 `ggbiplot` aims to be a drop-in replacement for the built-in R function `biplot.princomp()` with extended functionality 
