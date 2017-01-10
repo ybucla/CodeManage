@@ -1,7 +1,18 @@
 PCA相关画图展示
 ========
+1. plot
+------------
+Directly use plot to visualise the variance proportion of each PC component
 
-1. ggbiplot
+Example Usage
+-------------
+
+```r
+# plot method
+plot(ir.pca, type = "l")
+```
+
+2. ggbiplot
 ------------
 
 An implementation of the biplot using ggplot2.  The package provides two functions: `ggscreeplot()` and `ggbiplot()`.
