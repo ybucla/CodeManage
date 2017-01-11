@@ -35,7 +35,7 @@ heatmap.2(dmatrix,col=rev(redblue(100)),Colv = NA,dendrogram='row',keysize = 0.5
 ```
 ![](https://github.com/ybucla/CodeManage/blob/master/R/heatmap/heatmap.2.png)
 
-2. ggbiplot
+(2). pheatmap
 ------------
 
 ```r
