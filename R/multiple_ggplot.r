@@ -1,5 +1,6 @@
 library(ggplot2)
 
+# copyed from http://www.cookbook-r.com/Graphs/Multiple_graphs_on_one_page_(ggplot2)/
 # This example uses the ChickWeight dataset, which comes with ggplot2
 # First plot
 p1 <- ggplot(ChickWeight, aes(x=Time, y=weight, colour=Diet, group=Chick)) +
