@@ -1,6 +1,8 @@
 # penalty logistic regression and parameter selection using cross validation
 
+import numpy as np
 from sklearn.datasets import make_classification
+
 x, y = make_classification(n_samples=10000, random_state=133)
 
 # 直接用惩罚系数C=0.01拟合
