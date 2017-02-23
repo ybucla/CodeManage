@@ -24,3 +24,14 @@ input = ['a','b','c','d','a']
 filter = [x*3 for x in input if x == 'a'] # 等于a 的元素重复三次作为新列表元素
 dict = [(i,input[i]) for i in range(len(input))]
 ##
+
+## count non zero by row
+import numpy as np
+
+a = np.array([[1, 0, 1],
+              [2, 3, 4],
+              [0, 0, 7]])
+
+columns = (a != 0).sum(0)
+rows    = (a != 0).sum(1)
+##
