@@ -1,4 +1,6 @@
-# Multiclass Support Vector Machine
+Multiclass Support Vector Machine
+========
 
-# Loss function
+(1). Loss function
+------------
 ![](https://github.com/ybucla/CodeManage/blob/master/ML/ssvm/lossfunction.jpg)
