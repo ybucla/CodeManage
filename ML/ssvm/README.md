@@ -138,3 +138,32 @@ def train(self, X, y, learning_rate=1e-3, reg=1e-5, num_iters=100,
 
   return loss_history
 ```
+
+(4). prediction
+the class with highest score is predicted out.
+```python
+def predict(self, X):
+  """
+  Use the trained weights of this linear classifier to predict labels for
+  data points.
+
+  Inputs:
+  - X: N x D array of training data. Each column is a D-dimensional point.
+
+  Returns:
+  - y_pred: Predicted labels for the data in X. y_pred is a 1-dimensional
+    array of length N, and each element is an integer giving the predicted
+    class.
+  """
+  y_pred = np.zeros(X.shape[0])
+  ###########################################################################
+  # TODO:                                                                   #
+  # Implement this method. Store the predicted labels in y_pred.            #
+  ###########################################################################
+  scores = X.dot(self.W)
+  y_pred = np.argmax(scores, axis=1)
+  ###########################################################################
+  #                           END OF YOUR CODE                              #
+  ###########################################################################
+  return y_pred
+```
