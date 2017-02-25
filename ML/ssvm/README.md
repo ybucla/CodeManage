@@ -4,7 +4,7 @@ Multiclass Support Vector Machine
 
 (1). Loss function
 ------------
-In Multiclass Support Vector Machine, each class contains a weight parameter, the we predict each data under each class by directly using linear calculation, here, we consider the **linear classifier**, namely ***'wTx'***, the decision methond is based the max score among the classes. In order to make sure the classification is right, thsu the loss function considers the mean error the other class score minus the right class score. The small loss means the higher score for right class and low scores for other classes. Thus, mininum the loss function ***'L'*** would help us get the best parameter ***'W'***.
+In Multiclass Support Vector Machine, each class contains a weight parameter, the we predict each data under each class by directly using linear calculation, here, we consider the **linear classifier**, namely ***'wTx'***, the decision methond is based the max score among the classes. In order to make sure the classification is right, thsu the loss function considers the mean error the other class score minus the right class score. The small loss means the higher score for right class and low scores for other classes. In summary, the SVM loss function wants the score of the correct class yiyi to be larger than the incorrect class scores by at least by *'delta'*, If this is not the case, we will accumulate loss. Thus, mininum the loss function ***'L'*** would help us get the best parameter ***'W'***.
 <p align="center">![](https://github.com/ybucla/CodeManage/blob/master/ML/ssvm/lossfunction.jpg)<p />
 
 (2). Gradient of loss function
