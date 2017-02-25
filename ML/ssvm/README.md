@@ -1,6 +1,6 @@
 Multiclass Support Vector Machine
 ========
-*The code are mostly followd on http://cs231n.github.io/ and http://www.mowayao.net/post/machine-learning/linear-classification-cs231n*. The codes here are only for learning. 
+*The code are mostly followd on http://cs231n.github.io/ and http://www.mowayao.net/post/machine-learning/linear-classification-cs231n*. The codes here are only for learning. Please contact me if it is should be authorized first or any question: hust.wangyb@gmail.com.
 
 (1). Loss function
 ------------
@@ -68,7 +68,7 @@ def svm_loss_naive(W, X, y, reg):
 (3). Train using stochastic gradient descent
 ------------
 Train this linear classifier using stochastic gradient descent. Sample batch_size elements from the training data and their corresponding labels to use in this round of gradient descent. Store the data in X_batch and their corresponding labels in y_batch; after sampling X_batch should have shape (dim, batch_size) and y_batch should have shape (batch_size,).<br />
-code in *linear_classifier.py*
+codes in *linear_classifier.py*
 ```python
 def train(self, X, y, learning_rate=1e-3, reg=1e-5, num_iters=100,
           batch_size=200, verbose=False):
