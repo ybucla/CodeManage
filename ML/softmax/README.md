@@ -9,11 +9,25 @@ In Softmax Machine for Multiclass, each class contains a weight parameter, the w
 
 (2). Gradient of loss function
 ------------
-The loss function only contains the linear function which could be easily mininum by using the Gradient methond. However, as the exists of ***'max()'***, it is not full differential at some points. But we could still use Gradient descent method. Just ignore these undifferential points.
+The loss function only contains the linear function which could be easily mininum by using the Gradient methond. However, as the exists of ***'max()'***, it is not full differential at some points. But we could still use Gradient descent method. 
+<p align="center">![](https://github.com/ybucla/CodeManage/blob/master/ML/softmax/grad1.jpg)<p />
+<p align="center">![](https://github.com/ybucla/CodeManage/blob/master/ML/softmax/grad2.jpg)<p />
 ```python
 def svm_loss_naive(W, X, y, reg):
   """
   Structured SVM loss function, naive implementation (with loops).
+  Inputs have dimension D, there are C classes, and we operate on minibatches
+  of N examples.
+  Inputs:
+  - W: A numpy array of shape (D, C) containing weights.
+  - X: A numpy array of shape (N, D) containing a minibatch of data.
+  - y: A numpy array of shape (N,) containing training labels; y[i] = c means
+    that X[i] has label c, where 0 <= c < C.
+  - reg: (float) regularization strength
+  Returns a tuple of:
+def softmax_loss_naive(W, X, y, reg):
+  """
+  Softmax loss function, vectorized implementation., naive implementation (with loops).
   Inputs have dimension D, there are C classes, and we operate on minibatches
   of N examples.
   Inputs:
@@ -28,28 +42,25 @@ def svm_loss_naive(W, X, y, reg):
   """
   dW = np.zeros(W.shape) # initialize the gradient as zero
   # compute the loss and the gradient
-  num_classes = W.shape[1]
-  num_train = X.shape[0]
-  loss = 0.0
-  for i in xrange(num_train):
-    scores = X[i].dot(W)
-    correct_class_score = scores[y[i]]
-    for j in xrange(num_classes):
-      if j == y[i]:
-        continue
-      margin = scores[j] - correct_class_score + 1 # note delta = 1
-      if margin > 0:
-        loss += margin
-        dW[:,y[i]] -= X[i]
-        dW[:,j] += X[i]
+  N, D = X.shape
+  M = W.shape[1]
+
+  score = X.dot(W).T
+  score -= np.max(score, axis=0)
+  f = np.exp(score.T)
+  p = (f.T / f.sum(1)).T
+  loss = -np.log(p)[range(N),y].sum()
+
+  p[range(N),y] -= 1.0
+  for j in range(M):
+      dW[:,j] = (X.T * p[:,j]).sum(1)
+#      dW[:,j] = (p[range(N),j] - Y[:,j]).reshape((1,N)).dot(X)
 
   # Right now the loss is a sum over all training examples, but we want it
   # to be an average instead so we divide by num_train.
-  loss /= num_train
-  dW /= num_train
-  dW += reg*W
-  # Add regularization to the loss.
-  loss += 0.5 * reg * np.sum(W * W)
+  
+  loss = loss / N + 0.5 * reg * np.sum(W*W)
+  dW = dW / N + reg * W
 
   #############################################################################
   # TODO:                                                                     #
