@@ -5,7 +5,7 @@ Softmax Machine for Multiclass
 (1). Loss function
 ------------
 In Softmax Machine for Multiclass, each class contains a weight parameter, the we predict each data under each class by directly using linear calculation, here, we consider the **linear classifier**, namely ***'wTx'***, the decision methond is based the max score among the classes.
-<p align="center">![](https://github.com/ybucla/CodeManage/blob/master/ML/ssvm/lossfunction.jpg)<p />
+<p align="center">![](https://github.com/ybucla/CodeManage/blob/master/ML/softmax/softmax-loss.jpg)<p />
 
 (2). Gradient of loss function
 ------------
