@@ -23,9 +23,12 @@ for ( k in 1:n )
 }
 z <- rnorm(n)
 d <- data.frame( x, y, z )
+d <- as.matrix(d)
 
-mydata <- d
+p <- princomp(d)
+mydata <- p$scores[,1:2]
 wss <- (nrow(mydata)-1)*sum(apply(mydata,2,var))
 
-for (i in 1:15) wss[i] <- sum(kmeans(mydata,centers=i)$withinss)
+for (i in 1:100) wss[i] <- sum(kmeans(mydata,centers=i)$withinss)
 plot(1:15, wss, type="b", xlab="Number of Clusters",ylab="Within groups sum of squares")
+explained.variance <- 1 - wss / wss[1]
