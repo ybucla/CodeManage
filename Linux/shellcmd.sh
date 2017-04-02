@@ -20,4 +20,4 @@ d`a			delete from current cursor position to position of mark a
 c'a			change text from current line to line of mark a
 y`a			yank text to unnamed buffer from cursor to position of mark a
 :marks			list all the current marks
-:marks aB			list marks a, B
+:marks aB		list marks a, B
