@@ -26,3 +26,9 @@ split -d -l 3 input pre_
 ## vi 切换多个打开的文件 switch two files:
 # :n			Next file
 # :p			Previous file
+
+## vi 执行命令
+:!cmd
+
+## less
+# :&pattern - 仅显示匹配模式的行，而不是整个文件
