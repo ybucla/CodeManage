@@ -40,3 +40,7 @@ split -d -l 3 input pre_
 
 ## less
 :&pattern - 仅显示匹配模式的行，而不是整个文件
+
+## sed
+sed 's/[A-Z]/\l&/g' file    # 大写字符替换成小写
+sed 's/\b[a-z]/\u&/g' file  # 请把每个单词的第一个字母替换成大写
