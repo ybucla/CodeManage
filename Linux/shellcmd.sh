@@ -12,13 +12,13 @@ for i in {2..10};do printf $i'\t';done
 split -d -l 3 input pre_
 
 ## vi 设置书签
-# ma			set mark a at current cursor location
-# 'a			jump to line of mark a (first non-blank character in line)
-# `a			jump to position (line and column) of mark a
-# d'a			delete from current line to line of mark a
-# d`a			delete from current cursor position to position of mark a
-# c'a			change text from current line to line of mark a
-# y`a			yank text to unnamed buffer from cursor to position of mark a
+ma			set mark a at current cursor location
+'a			jump to line of mark a (first non-blank character in line)
+`a			jump to position (line and column) of mark a
+d'a			delete from current line to line of mark a
+d`a			delete from current cursor position to position of mark a
+c'a			change text from current line to line of mark a
+y`a			yank text to unnamed buffer from cursor to position of mark a
 :marks			list all the current marks
 :marks aB		list marks a, B
 :Ctrl + O: 上一个编辑位置
